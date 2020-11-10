@@ -4,12 +4,18 @@ const User = require('../models/user');
 const BadReqErr = require('../errors/BadReqErr');
 const ConflictError = require('../errors/ConflictError');
 const AuthError = require('../errors/AuthError');
+const NotFoundErr = require('../errors/NotFoundErr');
 
 const { NODE_ENV, JWT_SECRET = 'secret-key' } = process.env;
 
-module.exports.getUserId = (req, res, next) => {
-  User.find({})
-    .then((user) => res.send({ data: user }))
+module.exports.getUser = (req, res, next) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      if (user) {
+        res.send({ email: user.email, name: user.name });
+      }
+      throw new NotFoundErr('Пользователя не существует');
+    })
     .catch(next);
 };
 

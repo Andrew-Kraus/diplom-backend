@@ -3,13 +3,13 @@ const { celebrate, Joi } = require('celebrate');
 const auth = require('../middlewares/auth');
 const { getArticle, createArticle, deleteArticle } = require('../controllers/articles');
 
-articleRouter.get('/articles', auth, celebrate({
+articleRouter.get('/', auth, celebrate({
   headers: Joi.object().keys({
     authorization: Joi.string().required().regex(/(\w(.?)*-?)+/),
   }).unknown(true),
 }), getArticle);
 
-articleRouter.post('/articles', auth, celebrate({
+articleRouter.post('/', auth, celebrate({
   body: Joi.object().keys({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
@@ -26,7 +26,7 @@ articleRouter.post('/articles', auth, celebrate({
   }).unknown(true),
 }), createArticle);
 
-articleRouter.delete('/articles/:id', auth, celebrate({
+articleRouter.delete('/:id', auth, celebrate({
   params: Joi.object().keys({
     id: Joi.string().alphanum().hex().length(24),
   }),

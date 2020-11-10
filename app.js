@@ -7,12 +7,6 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-const getUserId = require('./routes/users');
-const createUser = require('./routes/users');
-const login = require('./routes/users');
-const getArticle = require('./routes/articles');
-const createArticle = require('./routes/articles');
-const deleteArticle = require('./routes/articles');
 const NotFoundErr = require('./errors/NotFoundErr');
 
 app.use(bodyParser.json());
@@ -26,12 +20,9 @@ mongoose.connect('mongodb://localhost:27017/diplomdb', {
 
 app.use(requestLogger);
 
-app.get('/users/me', getUserId);
-app.post('/signup', createUser);
-app.post('/signin', login);
-app.get('/articles', getArticle);
-app.post('/articles', createArticle);
-app.delete('/articles/:id', deleteArticle);
+app.use('/', require('./routes/regAndAuth'));
+app.use('/users', require('./routes/users'));
+app.use('/articles', require('./routes/articles'));
 
 app.use('*', () => {
   throw new NotFoundErr('Запрашиваемый ресурс не найден');
