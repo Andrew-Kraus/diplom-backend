@@ -8,21 +8,24 @@
     "body-parser": "^1.19.0",
     "celebrate": "^13.0.4",
     "dotenv": "^8.2.0",
-    "eslint": "^7.13.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
     "joi-objectid": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
+    "mongoose": "^5.10.13",
     "nodemon": "^2.0.6",
     "validator": "^13.1.17",
     "winston": "^3.3.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "Andrew Kraus",
   "license": "ISC"
