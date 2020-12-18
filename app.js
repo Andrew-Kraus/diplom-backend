@@ -12,7 +12,7 @@ const NotFoundErr = require('./errors/NotFoundErr');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/diplomdb', {
+mongoose.connect('mongodb://localhost:27017/backendkraus', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
