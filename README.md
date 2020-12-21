@@ -1,3 +1,13 @@
-https://diplombackend.students.nomoreparties.co
+# Backend проекта News-explore
+Протестировать можно по ссылкам: https://diplombackend.students.nomoreparties.co, http://178.154.232.28
 
-http://178.154.232.28
+# Языки
+JS
+
+# Технологии
+ExpressJS, Node.js, MongoDB, Git
+
+# Функционал
+Создание базы данных, регистрация/авторизация пользователей, создание/удаление статей, поиск статей
+
+# Это финальная версия проекта

@@ -2,6 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -11,6 +12,7 @@ const NotFoundErr = require('./errors/NotFoundErr');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/backendkraus', {
   useNewUrlParser: true,
