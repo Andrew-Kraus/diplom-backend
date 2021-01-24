@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const corsOptions = {
+  credentials: true,
+};
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -12,7 +16,7 @@ const NotFoundErr = require('./errors/NotFoundErr');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 
 mongoose.connect('mongodb://localhost:27017/backendkraus', {
   useNewUrlParser: true,
