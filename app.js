@@ -14,6 +14,9 @@ const { PORT = 3000 } = process.env;
 const app = express();
 const NotFoundErr = require('./errors/NotFoundErr');
 
+app.use((req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
