@@ -4,14 +4,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const whitelist = ['http://localhost:4200', 'http://example2.com'];
 const corsOptions = {
+  origin: [
+    'http://localhost:8080',
+    'https://Andrew-Kraus.github.io',
+    'https://Andrew-Kraus.github.io/diplom-frontend',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: [
+    'Content-Type',
+    'origin',
+    'Authorization',
+    'x-access-token',
+    'accept',
+  ],
   credentials: true,
-  origin: (origin, callback) => {
-    if (whitelist.includes(origin)) {
-      return callback(null, true);
-    }
-  },
 };
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -35,10 +44,6 @@ app.use(requestLogger);
 app.use('/', require('./routes/regAndAuth'));
 app.use('/users', require('./routes/users'));
 app.use('/articles', require('./routes/articles'));
-
-app.use((req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-});
 
 app.use('*', () => {
   throw new NotFoundErr('Запрашиваемый ресурс не найден');
