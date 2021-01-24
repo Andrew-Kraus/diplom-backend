@@ -4,8 +4,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const whitelist = ['http://localhost:4200', 'http://example2.com'];
 const corsOptions = {
   credentials: true,
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin)) {
+      return callback(null, true);
+    }
+  },
 };
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
