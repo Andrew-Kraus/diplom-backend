@@ -14,9 +14,6 @@ const { PORT = 3000 } = process.env;
 const app = express();
 const NotFoundErr = require('./errors/NotFoundErr');
 
-app.use((req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
@@ -32,6 +29,10 @@ app.use(requestLogger);
 app.use('/', require('./routes/regAndAuth'));
 app.use('/users', require('./routes/users'));
 app.use('/articles', require('./routes/articles'));
+
+app.use((req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+});
 
 app.use('*', () => {
   throw new NotFoundErr('Запрашиваемый ресурс не найден');
