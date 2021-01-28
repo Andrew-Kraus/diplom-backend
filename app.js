@@ -8,7 +8,7 @@ const corsOptions = {
   origin: [
     'http://localhost:8080',
     'https://Andrew-Kraus.github.io',
-    'https://Andrew-Kraus.github.io/diplom-frontend',
+    'https://andrew-kraus.github.io/diplom-frontend',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
