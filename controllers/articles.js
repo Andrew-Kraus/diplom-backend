@@ -4,7 +4,7 @@ const NotFoundErr = require('../errors/NotFoundErr');
 const NotEnoughRights = require('../errors/NotEnoughRights');
 
 module.exports.getArticle = (req, res, next) => {
-  Article.find({})
+  Article.find({ owner: req.user._id })
     .then((article) => res.send({ data: article }))
     .catch(next);
 };
