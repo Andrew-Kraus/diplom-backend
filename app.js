@@ -6,22 +6,13 @@ const cors = require('cors');
 
 const corsOptions = {
   origin: [
-    'http://localhost:8080',
-    'https://andrew-kraus.github.io/',
     'https://andrew-kraus.github.io/diplom-frontend/',
+    'https://andrew-kraus.github.io/',
+    'http://localhost:8080',
   ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: [
-    'Content-Type',
-    'origin',
-    'Authorization',
-    'x-access-token',
-    'accept',
-    'Access-Control-Allow-Origin',
-  ],
+  allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Methods", "Access-Control-Request-Headers"],
   credentials: true,
+  enablePreflight: true,
 };
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -33,11 +24,7 @@ const NotFoundErr = require('./errors/NotFoundErr');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-});
-
+app.options('*', cors(corsOptions));
 
 mongoose.connect('mongodb://localhost:27017/backendkraus', {
   useNewUrlParser: true,
