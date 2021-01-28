@@ -11,7 +11,7 @@ const corsOptions = {
     'https://andrew-kraus.github.io/diplom-frontend/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
+  preflightContinue: true,
   optionsSuccessStatus: 204,
   allowedHeaders: [
     'Content-Type',
