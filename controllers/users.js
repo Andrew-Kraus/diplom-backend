@@ -66,7 +66,7 @@ module.exports.logout = async (req, res, next) => {
       httpOnly: true,
       sameSite: 'none',
     })
-      .send({ 'Вы вышли из аккаунта' });
+      .send('Вы вышли из аккаунта');
   } catch (err) {
     return next();
   }
