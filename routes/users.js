@@ -1,7 +1,7 @@
 const userRouter = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const auth = require('../middlewares/auth');
-const { getUser, logout } = require('../controllers/users');
+const { getUser } = require('../controllers/users');
 
 userRouter.get('/me', auth, celebrate({
   params: Joi.object().keys({
@@ -11,7 +11,5 @@ userRouter.get('/me', auth, celebrate({
     authorization: Joi.string().required().regex(/(\w(.?)*-?)+/),
   }).unknown(true),
 }), getUser);
-
-userRouter.post('/logout', auth, logout);
 
 module.exports = userRouter;

@@ -58,15 +58,3 @@ module.exports.login = (req, res, next) => {
     })
     .catch(next);
 };
-
-module.exports.logout = async (req, res, next) => {
-  try {
-    return await res.clearCookie('jwt', {
-      maxAge: 3600000 * 24 * 7,
-      httpOnly: true,
-      sameSite: 'none',
-    });
-  } catch (err) {
-    return next();
-  }
-};
