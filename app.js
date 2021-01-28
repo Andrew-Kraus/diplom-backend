@@ -6,6 +6,8 @@ const cors = require('cors');
 
 const corsOptions = {
   origin: [
+    'https://andrew-kraus.github.io/diplom-frontend',
+    'https://andrew-kraus.github.io',
     'http://localhost:8080',
     'https://Andrew-Kraus.github.io',
     'https://Andrew-Kraus.github.io/diplom-frontend',
