@@ -65,9 +65,7 @@ module.exports.logout = async (req, res, next) => {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
       sameSite: 'none',
-      secure: true,
-    })
-      .send('Вы вышли из аккаунта');
+    });
   } catch (err) {
     return next();
   }
